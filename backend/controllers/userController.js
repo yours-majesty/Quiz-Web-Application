@@ -17,16 +17,16 @@ const register = async (req, res) => {
             return res.status(400).json({ error: "User already exists" });
         }
 
-        const salt = await bcrypt.genSalt(10); // Await the salt generation
-        const hash = await bcrypt.hash(password, salt); // Ensure password is hashed correctly
+        const salt = await bcrypt.genSalt(10); 
+        const hash = await bcrypt.hash(password, salt); 
 
         const user = new User({ name, email, password: hash });
         await user.save();
 
         const token = createToken(user._id);
-        return res.status(201).json({ success: true, token, message: "User registered successfully. You can log in now." }); // Send response here
+        return res.status(201).json({ success: true, token, message: "User registered successfully. You can log in now." }); 
     } catch (error) {
-        console.error("Registration error:", error); // Log the error for debugging
+        console.error("Registration error:", error); 
         return res.status(500).json({ error: "Some error occurred" });
     }
 };
@@ -55,7 +55,7 @@ const loginUser = async (req, res) => {
         token,
       });
     } catch (error) {
-      console.error(error); // Log error for better debugging
+      console.error(error); 
       res.status(400).json({ error: "Something went wrong" });
     }
   };

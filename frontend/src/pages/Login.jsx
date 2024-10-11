@@ -22,7 +22,7 @@ const Login = () => {
       // Success message
       toast.success('Login successful!');
       // Navigate to quizzes page after successful login
-      setTimeout(() => navigate('/quizzes'), 2000);  // Delay navigation for 2 seconds
+      setTimeout(() => navigate('/quizzes'), 2000); 
     } catch (error) {
       setError('Invalid email or password');
       // Show error message
@@ -66,7 +66,7 @@ const Login = () => {
         <p className="text-center text-gray-600">
           Don not have an account? <a href="/register" className="text-blue-500 hover:underline">Register</a>
         </p>
-        {/* Toast Container for showing notifications */}
+      
         <ToastContainer />
       </div>
     </div>

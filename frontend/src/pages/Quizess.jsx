@@ -2,17 +2,16 @@ import { useEffect, useState } from 'react';
 import axios from 'axios';
 
 const Quizess = () => {
-    const [quizzes, setQuizzes] = useState([]); // Set initial state as an empty array
-    const [loading, setLoading] = useState(true); // Add loading state
-    const [submissionResponse, setSubmissionResponse] = useState(null); // State for submission response
+    const [quizzes, setQuizzes] = useState([]); 
+    const [loading, setLoading] = useState(true); 
+    const [submissionResponse, setSubmissionResponse] = useState(null);  
     const backendUrl = import.meta.env.VITE_BACKEND_URL;
 
     const fetchQuizzes = async () => {
         try {
-            const response = await axios.get(`${backendUrl}/api/quizzes`); // Adjust the API endpoint
-            console.log(response.data); // Log the response
+            const response = await axios.get(`${backendUrl}/api/quizzes`);  endpoint
+            console.log(response.data);
 
-            // Check if the response data is an array before setting the state
             if (Array.isArray(response.data)) {
                 setQuizzes(response.data);
             } else {
@@ -21,7 +20,7 @@ const Quizess = () => {
         } catch (error) {
             console.error('Error fetching quizzes:', error);
         } finally {
-            setLoading(false); // Set loading to false after fetching
+            setLoading(false); 
         }
     };
 
@@ -45,16 +44,16 @@ const Quizess = () => {
 
     // Handle the submission of answers
     const handleSubmit = async (quizId) => {
-        const answers = userAnswers[quizId]; // Get user's answers for the quiz
+        const answers = userAnswers[quizId]; 
         try {
             const response = await axios.post(`${backendUrl}/api/quizzes/${quizId}/submit`, { answers });
-            setSubmissionResponse(response.data); // Store submission response
-            console.log(response.data); // Log the response
+            setSubmissionResponse(response.data); 
+            console.log(response.data); 
 
             // Clear user answers after submission
             setUserAnswers((prev) => ({
                 ...prev,
-                [quizId]: {}, // Reset answers for the submitted quiz
+                [quizId]: {}, 
             }));
         } catch (error) {
             console.error('Error submitting quiz:', error);
@@ -66,7 +65,7 @@ const Quizess = () => {
         <div className="container mx-auto p-6">
             <h1 className="text-4xl font-bold text-center mb-6 text-blue-600">All Quizzes</h1>
             
-            {/* Display submission response if available */}
+           
             {submissionResponse && (
                 <div className={`mt-6 p-4 rounded-lg text-center ${submissionResponse.message ? 'bg-green-100 text-green-800' : 'bg-red-100 text-red-800'}`}>
                     <p className="font-medium">{submissionResponse.message}</p>
@@ -76,7 +75,7 @@ const Quizess = () => {
                 </div>
             )}
 
-            {loading ? ( // Show loading indicator while fetching data
+            {loading ? ( 
                 <div className="text-center">
                     <p className="text-xl">Loading quizzes...</p>
                 </div>
@@ -84,11 +83,11 @@ const Quizess = () => {
                 quizzes.map((quiz) => (
                     <div key={quiz._id} className="bg-white rounded-lg shadow-lg p-6 mb-6">
                         <h2 className="text-3xl font-semibold text-blue-500">{quiz.title}</h2>
-                        {/* Render questions and options here */}
+                       
                         {quiz.questions.map((question, index) => (
                             <div key={index} className="mb-4">
                                 <p className="font-medium text-lg text-gray-800">{question.question}</p>
-                                {/* Render options for the question */}
+                                
                                 {question.options.map((option, optIndex) => (
                                     <label key={optIndex} className="block mb-2">
                                         <input
@@ -96,18 +95,18 @@ const Quizess = () => {
                                             name={`question${index}`}
                                             value={option}
                                             className="mr-2"
-                                            onChange={() => handleOptionChange(quiz._id, index, option)} // Handle option change
+                                            onChange={() => handleOptionChange(quiz._id, index, option)}
                                         />
                                         {option}
                                     </label>
                                 ))}
-                                {/* Add a styled hr tag after each question */}
+                              
                                 <hr className="my-4 border-t-2 border-blue-600 opacity-50" />
                             </div>
                         ))}
                         <div className="text-center">
                             <button
-                                onClick={() => handleSubmit(quiz._id)} // Pass quiz ID to handleSubmit
+                                onClick={() => handleSubmit(quiz._id)} 
                                 className="bg-blue-600 text-white font-bold py-2 px-6 rounded hover:bg-blue-800 transition duration-300"
                             >
                                 Submit Answers

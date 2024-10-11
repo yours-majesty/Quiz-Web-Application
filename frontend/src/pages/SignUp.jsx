@@ -17,13 +17,13 @@ const SingUp = () => {
     e.preventDefault();
     try {
       await axios.post(`${backendUrl}/api/register`, { name, email, password });
-      // Show success message
+     
       toast.success('Registration successful! You can Login Now');
-      // Redirect to login page after a short delay
+     
       setTimeout(() => navigate('/'),2000);
     } catch (error) {
       setError('Error registering user');
-      // Show error message
+     
       toast.error('Error registering user:',error);
     }
   };
@@ -74,7 +74,7 @@ const SingUp = () => {
         <p className="text-center text-gray-600">
           Already have an account? <a href="/login" className="text-blue-500 hover:underline">Login</a>
         </p>
-        {/* ToastContainer for showing notifications */}
+       
         <ToastContainer />
       </div>
     </div>

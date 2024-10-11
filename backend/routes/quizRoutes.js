@@ -1,5 +1,5 @@
 const express = require('express');
-const quizController = require('../controllers/quizController'); // Adjust the path if necessary
+const quizController = require('../controllers/quizController'); 
 
 const router = express.Router();
 
