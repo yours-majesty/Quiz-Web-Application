@@ -16,7 +16,7 @@ app.use(express.urlencoded({extended:true}));
 app.use(bodyParser.json());
 
 const corsOptions = {
-  origin: process.env.FRONTEND_URL, // Make sure FRONTEND_URL is correctly set in .env
+  origin:process.env.FRONTEND_URL, // Make sure FRONTEND_URL is correctly set in .env
   credentials: true, 
   methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'], // Explicitly allow these methods
   allowedHeaders: ['Content-Type', 'Authorization'], // Set allowed headers if needed
