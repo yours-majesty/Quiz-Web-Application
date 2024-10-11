@@ -10,11 +10,10 @@
   "routes": [
     {
       "src": "/api/(.*)",
-      "dest": "/api/$1"
-    },
+      "dest": "/api/$1"  
     {
       "src": "/(.*)",
-      "dest": "/index.html"  // Assuming you want to serve an index.html for other routes
+      "dest": "/index.html"  
     }
   ]
 }
