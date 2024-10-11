@@ -10,10 +10,6 @@ const cors = require('cors');
 // connecting database
 db();
 
-// middlewares
-app.use(express.json());
-app.use(express.urlencoded({extended:true}));
-app.use(bodyParser.json());
 
 const corsOptions = {
   origin: process.env.FRONTEND_URL, 
@@ -22,6 +18,15 @@ const corsOptions = {
 };
 
 app.use(cors(corsOptions));
+app.options('*', cors(corsOptions));
+
+
+// middlewares
+app.use(express.json());
+app.use(express.urlencoded({extended:true}));
+app.use(bodyParser.json());
+
+
 
 // routes
 app.use('/api',userRoutes);
