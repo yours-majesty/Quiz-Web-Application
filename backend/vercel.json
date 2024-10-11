@@ -1,5 +1,4 @@
-{
-  "installCommand": "npm install --legacy-peer-deps",
+ "installCommand":"npm install --legacy-peer-deps",
   "version": 2,
   "builds": [
     {
@@ -9,12 +8,11 @@
   ],
   "routes": [
     {
-      "src": "/api/(.*)",
-      "dest": "/api/$1"  
-    {
-      "src": "/(.*)",
-      "dest": "/index.html"  
+      "src": "src/**/*",
+      "dest": "/"
     }
+  ],
+  "routes":[
+  {"src":"/(.*)","dest":"/"}
   ]
 }
-
