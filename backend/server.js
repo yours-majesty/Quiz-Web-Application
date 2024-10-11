@@ -14,7 +14,14 @@ db();
 app.use(express.json());
 app.use(express.urlencoded({extended:true}));
 app.use(bodyParser.json());
-app.use(cors());
+
+const corsOptions = {
+  origin: 'https://quiz-web-application-xyz.vercel.app', // Replace with your production frontend URL
+  credentials: true, // If you're using cookies or authentication tokens
+  optionsSuccessStatus: 200
+};
+
+app.use(cors(corsOptions));
 
 // routes
 app.use('/api',userRoutes);
