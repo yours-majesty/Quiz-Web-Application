@@ -11,14 +11,23 @@ const cors = require('cors');
 db();
 
 
-const corsOptions = {
-  origin: process.env.FRONTEND_URL, 
-  credentials: true,
-  optionsSuccessStatus: 200
-};
-
-app.use(cors(corsOptions));
-app.options('*', cors(corsOptions));
+const allowedOrigins=process.env.FRONTEND_URL;
+app.use(
+    cors({
+        origin: function (origin, callback) {
+            if (
+                !origin ||
+                allowedOrigins.some((o) =>
+                    typeof o === "string" ? o === origin : o.test(origin)
+                )
+            ) {
+                callback(null, true);
+            } else {
+                callback(new Error("Not allowed by CORS"));
+            }
+        },
+    })
+);
 
 
 // middlewares
