@@ -9,7 +9,7 @@ const Quizess = () => {
 
     const fetchQuizzes = async () => {
         try {
-            const response = await axios.get(`${backendUrl}/api/quizzes`);  endpoint
+            const response = await axios.get(`${backendUrl}/api/quizzes`);
             console.log(response.data);
 
             if (Array.isArray(response.data)) {
